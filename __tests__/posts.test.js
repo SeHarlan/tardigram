@@ -36,13 +36,26 @@ describe('auth routes', () => {
   });
   it('gets with id', async() => {
     const user = await getUser({ username: 'testUser100' });
-    const post = await await getPost({ user: user._id });
+    const post = await getPost({ user: user._id });
     return getAgent()
       .get(`/api/v1/posts/${post._id}`)
       .then(res => {
         expect(res.body).toEqual({
           ...post,
           user
+        });
+      });
+  });
+  it('ppatches a post', async() => {
+    const user = await getUser({ username: 'testUser100' });
+    const post = await getPost({ user: user._id });
+    return getAgent()
+      .patch(`/api/v1/posts/${post._id}`)
+      .send({ caption: 'new caption' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...post,
+          caption: 'new caption'
         });
       });
   });
