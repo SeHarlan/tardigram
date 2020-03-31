@@ -38,9 +38,12 @@ describe('auth routes', () => {
     const user = await getUser({ username: 'testUser100' });
     const post = await await getPost({ user: user._id });
     return getAgent()
-      .get(`/api/v1/posts/${user._id}`)
+      .get(`/api/v1/posts/${post._id}`)
       .then(res => {
-        expect(res.body).toEqual(post);
+        expect(res.body).toEqual({
+          ...post,
+          user
+        });
       });
   });
 });
