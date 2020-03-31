@@ -1,4 +1,4 @@
-const { getPosts, getAgent, getUser } = require('../db/data-helpers');
+const { getPosts, getPost, getAgent, getUser } = require('../db/data-helpers');
 
 const request = require('supertest');
 const app = require('../lib/app');
@@ -32,6 +32,15 @@ describe('auth routes', () => {
       .get('/api/v1/posts')
       .then(res => {
         expect(res.body).toEqual(posts);
+      });
+  });
+  it('gets with id', async() => {
+    const user = await getUser({ username: 'testUser100' });
+    const post = await await getPost({ user: user._id });
+    return getAgent()
+      .get(`/api/v1/posts/${user._id}`)
+      .then(res => {
+        expect(res.body).toEqual(post);
       });
   });
 });
