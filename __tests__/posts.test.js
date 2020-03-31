@@ -59,4 +59,14 @@ describe('auth routes', () => {
         });
       });
   });
+  it('deletes a post wqith id', async() => {
+    const user = await getUser({ username: 'testUser100' });
+    const post = await getPost({ user: user._id });
+    return getAgent()
+      .delete(`/api/v1/posts/${post._id}`)
+      .then(res => {
+        expect(res.body).toEqual(post);
+      });
+
+  });
 });
