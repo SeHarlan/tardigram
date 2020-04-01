@@ -71,4 +71,16 @@ describe('post routes', () => {
       });
 
   });
+  it('gets popular posts', async() => {
+    return getAgent()
+      .get('/api/v1/posts/popular')
+      .then(res => {
+        expect(res.body.length).toEqual(10);
+        expect(res.body).toContainEqual({
+          _id: expect.any(String),
+          user: expect.any(String),  
+          totalComments: expect.any(Number)
+        });
+      });
+  });
 });

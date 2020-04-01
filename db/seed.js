@@ -3,7 +3,7 @@ const User = require('../lib/models/User');
 const Post = require('../lib/models/Post');
 const Comment = require('../lib/models/Comment');
 
-module.exports = async({ usersToCreate = 5 } = {}) => {
+module.exports = async({ usersToCreate = 3 } = {}) => {
   const loggedInUser = await User.create({
     username: 'testUser100',
     password: 'password',
@@ -15,7 +15,7 @@ module.exports = async({ usersToCreate = 5 } = {}) => {
     password: chance.animal(),
     profilePhotoUrl: chance.url()
   })));
-  const posts = await Post.create([...Array(15)].map(() => ({
+  const posts = await Post.create([...Array(30)].map(() => ({
     user: chance.weighted([loggedInUser, ...users], [2, ...users.map(() => 1)])._id,
     photoUrl: chance.url(),
     caption: chance.sentence(),
