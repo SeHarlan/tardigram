@@ -26,8 +26,7 @@ describe('comment tests', () => {
   });
   it('deletes a comment wqith id', async() => {
     const user = await getUser({ username: 'testUser100' });
-    const post = await getPost({ user: user._id });
-    const comment = await getComment({ commentBy: user._id, post: post._id });
+    const comment = await getComment({ commentBy: user._id });
     return getAgent()
       .delete(`/api/v1/comments/${comment._id}`)
       .then(res => {
