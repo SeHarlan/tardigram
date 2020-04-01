@@ -3,7 +3,7 @@ const { getPosts, getPost, getAgent, getUser } = require('../db/data-helpers');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('auth routes', () => {
+describe('post routes', () => {
   it('posts a post, post-haste', async() => {
     const user = await getUser({ username: 'testUser100' });
     return getAgent()

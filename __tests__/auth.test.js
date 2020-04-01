@@ -1,4 +1,4 @@
-const { getUser, getAgent } = require('../db/data-helpers');
+const { getAgent } = require('../db/data-helpers');
 
 const request = require('supertest');
 const app = require('../lib/app');
