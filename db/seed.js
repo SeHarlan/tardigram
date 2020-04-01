@@ -15,14 +15,14 @@ module.exports = async({ usersToCreate = 5 } = {}) => {
     password: chance.animal(),
     profilePhotoUrl: chance.url()
   })));
-  const posts = await Post.create([...Array(10)].map(() => ({
+  const posts = await Post.create([...Array(15)].map(() => ({
     user: chance.weighted([loggedInUser, ...users], [2, ...users.map(() => 1)])._id,
     photoUrl: chance.url(),
     caption: chance.sentence(),
     tags: [chance.animal(), chance.animal(), chance.animal()]
   })));
 
-  await Comment.create([...Array(50)].map(() => ({
+  await Comment.create([...Array(100)].map(() => ({
     commentBy: chance.weighted([loggedInUser, ...users], [2, ...users.map(() => 1)])._id,
     post: chance.pickone(posts)._id,
     comment: chance.sentence()
