@@ -19,5 +19,5 @@ jobs:
     - run: npm test
       env:
         CI: true
-        MONGODB_URI: mongodb://localhost:27017/travis
+        MONGODB_URI: mongodb://localhost:27017/tardigram
         APP_SECRET: unicorn
